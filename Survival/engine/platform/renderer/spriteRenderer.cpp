@@ -7,7 +7,11 @@ SpriteRenderer::SpriteRenderer(const std::string & shaderPath)
 
 void SpriteRenderer::AddSprite(Sprite2D* sprite)
 {
-	m_sprites.push_back(sprite);
+	if (m_sprites.size() == 0) {
+		m_sprites.push_back(sprite);
+	} else {
+
+	}
 }
 
 void SpriteRenderer::Render(const Camera & camera)
