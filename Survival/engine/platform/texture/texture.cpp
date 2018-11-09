@@ -43,11 +43,11 @@ void Texture::Unbind()
 
 const std::vector<float> Texture::GetTextureCoords(int xPos, int yPos) const
 {
-	static const float TEX_PER_ROW_VERTICLE = (float)m_height / (float)m_blockSize.y;
-	static const float TEX_PER_ROW_HORIZONTAL = (float)m_width / (float)m_blockSize.x;
+	const float TEX_PER_ROW_VERTICLE = (float)m_height / (float)m_blockSize.y;
+	const float TEX_PER_ROW_HORIZONTAL = (float)m_width / (float)m_blockSize.x;
 
-	static const float SPRITE_SIZE_WIDTH = 1.0f / TEX_PER_ROW_HORIZONTAL;
-	static const float SPRITE_SIZE_HEIGHT = 1.0f / TEX_PER_ROW_VERTICLE;
+	const float SPRITE_SIZE_WIDTH = 1.0f / TEX_PER_ROW_HORIZONTAL;
+	const float SPRITE_SIZE_HEIGHT = 1.0f / TEX_PER_ROW_VERTICLE;
 
 	float xMin = (xPos * (float)SPRITE_SIZE_WIDTH);
 	float yMax = (yPos * (float)SPRITE_SIZE_HEIGHT) * (-1) + 1;
