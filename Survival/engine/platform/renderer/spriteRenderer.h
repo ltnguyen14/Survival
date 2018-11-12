@@ -1,4 +1,7 @@
 #pragma once
+
+#include <algorithm>
+
 #include "../../components/sprite/sprite2D.h"
 #include "../window/Window.h"
 #include "../entities/camera.h"

@@ -7,15 +7,13 @@ SpriteRenderer::SpriteRenderer(const std::string & shaderPath)
 
 void SpriteRenderer::AddSprite(Sprite2D* sprite)
 {
-	if (m_sprites.size() == 0) {
-		m_sprites.push_back(sprite);
-	} else {
-
-	}
+	m_sprites.push_back(sprite);
 }
 
 void SpriteRenderer::Render(const Camera & camera)
 {
+	std::sort(m_sprites.begin(), m_sprites.end(), [](Sprite2D* lhs, Sprite2D* rhs) -> bool { return lhs->position.y < rhs->position.y; });
+
 	m_shader.BindShader();
 
 	m_shader.SetUniformInt1("u_Texture", 0);
