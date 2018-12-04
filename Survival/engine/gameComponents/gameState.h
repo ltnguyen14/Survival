@@ -13,6 +13,7 @@ public:
 	 
 	virtual void HandleEvents(GameEngine* gameEngine) = 0;
 	virtual void Update(GameEngine* gameEngine) = 0;
+	virtual void FixedUpdate(GameEngine* gameEngine) = 0;
 	virtual void Draw(GameEngine* gameEngine) = 0;
 
 	void ChangeState(GameEngine* engine, GameState* newState) {

@@ -3,7 +3,7 @@
 #include "gameState.h"
 
 GameEngine::GameEngine(int width, int height, const char* title, bool resizable, int FPS)
-	:m_window { width, height, title, resizable }, m_camera { m_window, true }, m_spriteRenderer { "res/shaders/basic.shader" }, m_fps(FPS), m_inputManager(&m_window)
+	:m_window { width, height, title, resizable }, m_camera { m_window, true }, m_spriteRenderer { "res/shaders/basic.shader" }, m_backgroundRenderer{ "res/shaders/basic.shader" }, m_fps(FPS), m_inputManager(&m_window)
 {
 }
 
@@ -72,6 +72,12 @@ void GameEngine::Update()
 	m_running = !m_window.ShouldClose();
 	// let the state update the game
 	m_states.back()->Update(this);
+}
+
+void GameEngine::FixedUpdate()
+{
+	// Fixed update - UI etc.
+	m_states.back()->FixedUpdate(this);
 }
 
 void GameEngine::Draw()

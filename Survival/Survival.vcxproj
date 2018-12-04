@@ -30,6 +30,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -77,7 +78,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Survival\engine\external;$(SolutionDir)Deps\GLM\glm;$(SolutionDir)Deps\GLEW\include;$(SolutionDir)Deps\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions); GLEW_STATIC</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions); GLEW_STATIC;IMGUI_IMPL_OPENGL_LOADER_GLEW</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Deps\GLEW\lib;$(SolutionDir)Deps\GLFW\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -141,6 +142,12 @@
   <ItemGroup>
     <ClCompile Include="engine\components\animator\animator.cpp" />
     <ClCompile Include="engine\components\Sprite\sprite2D.cpp" />
+    <ClCompile Include="engine\external\imgui\imgui.cpp" />
+    <ClCompile Include="engine\external\imgui\imgui_demo.cpp" />
+    <ClCompile Include="engine\external\imgui\imgui_draw.cpp" />
+    <ClCompile Include="engine\external\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="engine\external\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="engine\external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="engine\external\stb_image\stb_image.cpp" />
     <ClCompile Include="engine\gameComponents\gameEngine.cpp" />
     <ClCompile Include="engine\gameComponents\inputManager.h" />
@@ -149,6 +156,7 @@
     <ClCompile Include="engine\platform\buffers\vertexBuffer.cpp" />
     <ClCompile Include="engine\platform\entities\camera.cpp" />
     <ClCompile Include="engine\platform\math\Matrix.cpp" />
+    <ClCompile Include="engine\platform\renderer\backgroundRenderer.cpp" />
     <ClCompile Include="engine\platform\renderer\spriteRenderer.cpp" />
     <ClCompile Include="engine\platform\shader\shader.cpp" />
     <ClCompile Include="engine\platform\texture\texture.cpp" />
@@ -160,8 +168,17 @@
   <ItemGroup>
     <ClInclude Include="engine\components\animator\animator.h" />
     <ClInclude Include="engine\components\components.h" />
+    <ClInclude Include="engine\components\physics\collision\BoxCollider.h" />
     <ClInclude Include="engine\components\Sprite\sprite2D.h" />
     <ClInclude Include="engine\Engine.h" />
+    <ClInclude Include="engine\external\imgui\imconfig.h" />
+    <ClInclude Include="engine\external\imgui\imgui.h" />
+    <ClInclude Include="engine\external\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="engine\external\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="engine\external\imgui\imgui_internal.h" />
+    <ClInclude Include="engine\external\imgui\imstb_rectpack.h" />
+    <ClInclude Include="engine\external\imgui\imstb_textedit.h" />
+    <ClInclude Include="engine\external\imgui\imstb_truetype.h" />
     <ClInclude Include="engine\external\stb_image\stb_image.h" />
     <ClInclude Include="engine\gameComponents\gameComponents.h" />
     <ClInclude Include="engine\gameComponents\gameEngine.h" />
@@ -174,6 +191,7 @@
     <ClInclude Include="engine\platform\entities\entity.h" />
     <ClInclude Include="engine\platform\math\Math.h" />
     <ClInclude Include="engine\platform\math\Matrix.h" />
+    <ClInclude Include="engine\platform\renderer\backgroundRenderer.h" />
     <ClInclude Include="engine\platform\renderer\spriteRenderer.h" />
     <ClInclude Include="engine\platform\shader\shader.h" />
     <ClInclude Include="engine\platform\texture\texture.h" />

@@ -4,6 +4,7 @@
 #include "../platform/window/Window.h"
 #include "../platform/entities/camera.h"
 #include "../platform/renderer/spriteRenderer.h"
+#include "../platform/renderer/backgroundRenderer.h"
 #include "inputManager.h"
 
 class GameState;
@@ -21,6 +22,7 @@ public:
 
 	void HandleEvents();
 	void Update();
+	void FixedUpdate();
 	void Draw();
 
 	bool Running() { return m_running; };
@@ -31,6 +33,7 @@ public:
 	Camera m_camera;
 	InputManager m_inputManager;
 	SpriteRenderer m_spriteRenderer;
+	BackgroundRenderer m_backgroundRenderer;
 
 private:
 	std::vector<GameState*> m_states;

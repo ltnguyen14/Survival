@@ -13,9 +13,9 @@ public:
 	SpriteRenderer(const std::string & shaderPath);
 
 	void AddSprite(Sprite2D* sprite);
-	void Render(const Camera& camera);
+	virtual void Render(const Camera& camera);
 
-private:
+protected:
 	std::vector<Sprite2D*> m_sprites;
 	Shader m_shader;
 };

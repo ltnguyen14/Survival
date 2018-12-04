@@ -1,5 +1,9 @@
 #pragma once
 
+#include "imgui/imgui.h"
+#include "imgui/imgui_impl_glfw.h"
+#include "imgui/imgui_impl_opengl3.h"
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -29,6 +33,8 @@ public:
 	inline bool ShouldClose() { return glfwWindowShouldClose(m_window);  };
 
 private:
+	void SetUpImgui();
+
 	int m_width, m_height;
 	const char* m_title;
 	bool m_resizable;

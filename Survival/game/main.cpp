@@ -18,7 +18,6 @@ int main(void)
 	clock_t previous = clock();
 
 	while (game.Running()) {
-
 		auto current = clock();
 		auto elapsed = current - previous;
 
@@ -26,6 +25,7 @@ int main(void)
 		lag += elapsed;
 
 		game.HandleEvents();
+		game.FixedUpdate();
 
 		while (lag >= MS_PER_UPDATE) {
 			game.Update();
