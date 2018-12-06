@@ -11,6 +11,7 @@ public:
 	bool Collides(BoxCollider collider);
 
 	inline void HookEntity(const Entity* entity) { m_entity = entity; };
+	inline const Entity* GetEntity() const { return m_entity; };
 
 private:
 	glm::vec2 m_size;

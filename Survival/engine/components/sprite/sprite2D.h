@@ -13,6 +13,8 @@ public:
 	void Bind() const;
 	virtual void Update(InputManager* inputManager);
 
+	glm::vec2 GetCenterPoint() { return { position.x + size.x, position.y + size.y }; };
+
 	inline const unsigned int GetIndiciesCount() const { return m_ibo->GetCount(); };
 	inline const Texture& GetTexture() const { return m_texture; };
 
