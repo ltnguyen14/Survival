@@ -141,6 +141,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engine\components\animator\animator.cpp" />
+    <ClCompile Include="engine\components\physics\collision\BoxCollider.cpp" />
+    <ClCompile Include="engine\components\physics\PhysicsEngine.cpp" />
     <ClCompile Include="engine\components\Sprite\sprite2D.cpp" />
     <ClCompile Include="engine\external\imgui\imgui.cpp" />
     <ClCompile Include="engine\external\imgui\imgui_demo.cpp" />
@@ -169,6 +171,7 @@
     <ClInclude Include="engine\components\animator\animator.h" />
     <ClInclude Include="engine\components\components.h" />
     <ClInclude Include="engine\components\physics\collision\BoxCollider.h" />
+    <ClInclude Include="engine\components\physics\PhysicsEngine.h" />
     <ClInclude Include="engine\components\Sprite\sprite2D.h" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\external\imgui\imconfig.h" />

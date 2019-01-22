@@ -5,6 +5,7 @@
 #include "../platform/entities/camera.h"
 #include "../platform/renderer/spriteRenderer.h"
 #include "../platform/renderer/backgroundRenderer.h"
+#include "../components/physics/PhysicsEngine.h"
 #include "inputManager.h"
 
 class GameState;
@@ -32,6 +33,7 @@ public:
 	Window m_window;
 	Camera m_camera;
 	InputManager m_inputManager;
+	PhysicsEngine m_physicsEngine;
 	SpriteRenderer m_spriteRenderer;
 	BackgroundRenderer m_backgroundRenderer;
 

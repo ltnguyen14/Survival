@@ -19,6 +19,8 @@ void TestState::Init(GameEngine * gameEngine)
 	
 	m_sprites.push_back(player);
 
+	gameEngine->m_physicsEngine.AddBoxCollider(*player, {1, 1});
+
 	for (unsigned int i = 0; i < m_backgroundSprites.size(); i++) {
 		gameEngine->m_backgroundRenderer.AddSprite(m_backgroundSprites[i]);
 	}
@@ -51,6 +53,7 @@ void TestState::Update(GameEngine * gameEngine)
 		m_sprites[i]->Update(&gameEngine->m_inputManager);
 	}
 	gameEngine->m_camera.Update();
+	gameEngine->m_physicsEngine.Update();
 }
 
 void TestState::FixedUpdate(GameEngine * gameEngine)
