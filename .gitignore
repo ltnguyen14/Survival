@@ -333,3 +333,15 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 Survival/x64/
+CMakeLists.txt
+cmake-build-debug/CMakeCache.txt
+cmake-build-debug/CMakeFiles/clion-environment.txt
+cmake-build-debug/CMakeFiles/clion-log.txt
+cmake-build-debug/CMakeFiles/cmake.check_cache
+cmake-build-debug/CMakeFiles/feature_tests.bin
+cmake-build-debug/CMakeFiles/feature_tests.cxx
+cmake-build-debug/CMakeFiles/3.12.0/CMakeCXXCompiler.cmake
+cmake-build-debug/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_CXX.bin
+cmake-build-debug/CMakeFiles/3.12.0/CMakeSystem.cmake
+cmake-build-debug/CMakeFiles/3.12.0/CompilerIdCXX/a.out
+cmake-build-debug/CMakeFiles/3.12.0/CompilerIdCXX/CMakeCXXCompilerId.cpp
