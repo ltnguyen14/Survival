@@ -1,2 +1,3 @@
-﻿  main.cpp
+﻿  testState.cpp
+f:\projects\games\survival\survival\game\gamestates\teststate.cpp(5): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Survival.vcxproj -> F:\Projects\Games\Survival\Debug\Survival.exe

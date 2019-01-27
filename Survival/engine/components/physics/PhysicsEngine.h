@@ -10,6 +10,7 @@ public:
 
 	void AddBoxCollider(Entity& entity, glm::vec2 size);
 	void Update();
+	void FixedUpdate();
 
 private:
 	std::vector<BoxCollider*> m_colliders;

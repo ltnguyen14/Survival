@@ -8,8 +8,8 @@ void TestState::Init(GameEngine * gameEngine)
 
 	Player* player = new Player{ { 0, 0, 0 }, { 64, 128 }, *playerTexture, { 0, 0 } };
 
-	for (unsigned int x = 0; x < 10; x++)
-		for (unsigned int y = 0; y < 10; y++) {
+	for (unsigned int x = 0; x < 100; x++)
+		for (unsigned int y = 0; y < 100; y++) {
 			Sprite2D* sprite = new Sprite2D{ { x * 64 * 2, y * 64, 0 }, { 64, 64 }, *objectTexture, { 1, 0 } };
 			Sprite2D* sprite2 = new Sprite2D{ { x * 64 * 2 + 64, y * 64, 0 }, { 64, 64 }, *objectTexture, { 0, 0 } };
 
@@ -58,6 +58,7 @@ void TestState::Update(GameEngine * gameEngine)
 
 void TestState::FixedUpdate(GameEngine * gameEngine)
 {
+	gameEngine->m_physicsEngine.FixedUpdate();
 	{
 		ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);

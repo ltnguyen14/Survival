@@ -12,7 +12,7 @@ class SpriteRenderer {
 public:
 	SpriteRenderer(const std::string & shaderPath);
 
-	void AddSprite(Sprite2D* sprite);
+	virtual void AddSprite(Sprite2D* sprite);
 	virtual void Render(const Camera& camera);
 
 protected:

@@ -19,6 +19,15 @@ void PhysicsEngine::AddBoxCollider(Entity & entity, glm::vec2 size)
 void PhysicsEngine::Update()
 {
 	for (auto collider : m_colliders) {
-		collider->position = collider->GetEntity()->position;
+		collider->Update();
 	}
 }
+
+void PhysicsEngine::FixedUpdate()
+{
+	for (auto collider : m_colliders) {
+
+	}
+}
+
+

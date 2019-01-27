@@ -1,5 +1,13 @@
 #include "backgroundRenderer.h"
 
+void BackgroundRenderer::AddSprite(Sprite2D * sprite)
+{
+	m_sprites.push_back(sprite);
+	glm::mat4 modelMatrix = makeModelMatrix({ sprite->position, sprite->rotation });
+
+	m_modelMatricies.push_back(modelMatrix);
+}
+
 void BackgroundRenderer::Render(const Camera & camera)
 {
 	m_shader.BindShader();
@@ -18,16 +26,10 @@ void BackgroundRenderer::Render(const Camera & camera)
 		m_sprites[i]->Bind();
 		m_sprites[i]->GetTexture().Bind();
 
-		glm::mat4 modelMatrix = makeModelMatrix({ m_sprites[i]->position, m_sprites[i]->rotation });
-		m_shader.SetUniformMat4("u_M", modelMatrix);
+		m_shader.SetUniformMat4("u_M", m_modelMatricies[i]);
 		GLCALL(glDrawElements(GL_TRIANGLES, m_sprites[i]->GetIndiciesCount(), GL_UNSIGNED_INT, nullptr));
 	}
 
 	GLCALL(glEnable(GL_DEPTH_TEST));
 	GLCALL(glDisable(GL_BLEND));
-
-	//for (unsigned int i = 0; i < m_sprites.size(); i++) {
-	//	delete(m_sprites[i]);
-	//}
-	//m_sprites.clear();
 }
