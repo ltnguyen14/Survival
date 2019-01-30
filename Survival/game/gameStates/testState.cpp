@@ -7,15 +7,21 @@ void TestState::Init(GameEngine * gameEngine)
 	Texture* objectTexture = new Texture{ "res/spritesheets/spritesheet_natural_items.png", { 16, 16 } };
 
 	Player* player = new Player{ { 0, 0, 0 }, { 64, 128 }, *playerTexture, { 0, 0 } };
+	gameEngine->m_physicsEngine.AddBoxCollider(*player, { 64, 128 });
 
-	for (unsigned int x = 0; x < 100; x++)
-		for (unsigned int y = 0; y < 100; y++) {
+	Sprite2D* sprite = new Sprite2D{ {128, 128, 0}, { 64, 64 }, *objectTexture, { 0, 0 } };
+	gameEngine->m_physicsEngine.AddBoxCollider(*sprite, { 64, 64 });
+
+	m_backgroundSprites.push_back(sprite);
+
+	/*for (unsigned int x = 0; x < 10; x++)
+		for (unsigned int y = 0; y < 10; y++) {
 			Sprite2D* sprite = new Sprite2D{ { x * 64 * 2, y * 64, 0 }, { 64, 64 }, *objectTexture, { 1, 0 } };
 			Sprite2D* sprite2 = new Sprite2D{ { x * 64 * 2 + 64, y * 64, 0 }, { 64, 64 }, *objectTexture, { 0, 0 } };
 
 			m_backgroundSprites.push_back(sprite);
 			m_backgroundSprites.push_back(sprite2);
-		}
+		}*/
 	
 	m_sprites.push_back(player);
 

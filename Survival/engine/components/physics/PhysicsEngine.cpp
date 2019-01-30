@@ -25,9 +25,8 @@ void PhysicsEngine::Update()
 
 void PhysicsEngine::FixedUpdate()
 {
-	for (auto collider : m_colliders) {
-
-	}
+	if (BoxCollider::CheckCollision(m_colliders[0], m_colliders[1]))
+		std::cout << "Collision" << std::endl;
 }
 
 

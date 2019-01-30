@@ -12,6 +12,8 @@ public:
 	void HookEntity(const Entity* entity);
 	void Update();
 
+	static bool CheckCollision(BoxCollider* boxOne, BoxCollider* boxTwo);
+
 private:
 	const Entity* m_focusedEntity;
 	glm::vec2 m_centerPoint;
