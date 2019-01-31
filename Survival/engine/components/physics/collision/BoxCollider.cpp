@@ -3,11 +3,13 @@
 void BoxCollider::HookEntity(const Entity * entity)
 {
 	m_focusedEntity = entity;
+    position = entity->position;
     m_prevPosition = entity->position;
 }
 
 void BoxCollider::Update()
 {
+    m_prevPosition = position;
 	position = m_focusedEntity->position;
 	m_centerPoint = glm::vec2(position.x + size.x / 2, position.y + size.y / 2);
 }
