@@ -25,8 +25,10 @@ void PhysicsEngine::Update()
 
 void PhysicsEngine::FixedUpdate()
 {
-	if (BoxCollider::CheckCollision(m_colliders[0], m_colliders[1]))
-		std::cout << "Collision" << std::endl;
+    for (int x = 0; x < m_colliders.size(); x++)
+        for (int y = x + 1; y < m_colliders.size(); y++) {
+            if (BoxCollider::CheckCollision(m_colliders[x], m_colliders[y]))
+                std::cout << "Collision detected" << std::endl;
+        }
 }
-
 
