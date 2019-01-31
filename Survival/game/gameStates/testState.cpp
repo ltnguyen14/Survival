@@ -7,9 +7,11 @@ void TestState::Init(GameEngine * gameEngine)
 	Texture* objectTexture = new Texture{ "res/spritesheets/spritesheet_natural_items.png", { 16, 16 } };
 
 	Player* player = new Player{ { 0, 0, 0 }, { 64, 128 }, *playerTexture, { 0, 0 } };
+    std::cout << "Created a new player with uid: " << player->uid << std::endl;
 	gameEngine->m_physicsEngine.AddBoxCollider(*player, { 64, 128 });
 
 	Sprite2D* sprite = new Sprite2D{ {128, 128, 0}, { 64, 64 }, *objectTexture, { 0, 0 } };
+    std::cout << "Created a new sprite with uid: " << sprite->uid << std::endl;
 	gameEngine->m_physicsEngine.AddBoxCollider(*sprite, { 64, 64 });
 
 	m_backgroundSprites.push_back(sprite);
