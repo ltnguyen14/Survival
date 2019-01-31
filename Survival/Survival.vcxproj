@@ -163,6 +163,9 @@
     <ClCompile Include="engine\platform\shader\shader.cpp" />
     <ClCompile Include="engine\platform\texture\texture.cpp" />
     <ClCompile Include="engine\platform\window\Window.cpp" />
+    <ClCompile Include="engine\components\event\EventBus.cpp" />
+    <ClCompile Include="engine\components\event\EventNode.cpp" />
+    <ClCompile Include="engine\components\event\EventManager.cpp" />
     <ClCompile Include="game\gameEntities\player.cpp" />
     <ClCompile Include="game\gameStates\testState.cpp" />
     <ClCompile Include="game\main.cpp" />
@@ -170,6 +173,7 @@
   <ItemGroup>
     <ClInclude Include="engine\components\animator\animator.h" />
     <ClInclude Include="engine\components\components.h" />
+    <ClInclude Include="engine\components\event\Event.h" />
     <ClInclude Include="engine\components\physics\collision\BoxCollider.h" />
     <ClInclude Include="engine\components\physics\PhysicsEngine.h" />
     <ClInclude Include="engine\components\Sprite\sprite2D.h" />
@@ -201,6 +205,9 @@
     <ClInclude Include="engine\platform\window\Window.h" />
     <ClInclude Include="engine\util\ErrorLogging.h" />
     <ClInclude Include="engine\util\Utilities.h" />
+    <ClInclude Include="engine\components\event\EventBus.h" />
+    <ClInclude Include="engine\components\event\EventNode.h" />
+    <ClInclude Include="engine\components\event\EventManager.h" />
     <ClInclude Include="game\gameEntities\gameEntities.h" />
     <ClInclude Include="game\gameEntities\player.h" />
     <ClInclude Include="game\gameStates\gameStates.h" />
