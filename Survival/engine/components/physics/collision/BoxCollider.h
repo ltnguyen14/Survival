@@ -10,12 +10,14 @@ public:
 
 	inline const Entity* GetEntity() { return m_focusedEntity; };
 	void HookEntity(const Entity* entity);
+    void CollisionBacktrack();
 	void Update();
 
 	static bool CheckCollision(BoxCollider* boxOne, BoxCollider* boxTwo);
 
 private:
 	const Entity* m_focusedEntity;
+    glm::vec3 m_prevPosition;
 	glm::vec2 m_centerPoint;
 	glm::vec2 m_size;
 };

@@ -9,7 +9,7 @@ class Player : public Sprite2D {
 public:
 	Player(glm::vec3 worldPosition, glm::vec2 size, const Texture& texture, glm::vec2 coord);
 
-	void Update(InputManager* inputManager);
+	void Update(InputManager* inputManager, PhysicsManager* physicsManager);
 
 	void SetPosition(glm::vec3 position);
 	void SetRotation(glm::vec3 rotation);

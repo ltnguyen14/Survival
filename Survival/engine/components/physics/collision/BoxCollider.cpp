@@ -3,12 +3,18 @@
 void BoxCollider::HookEntity(const Entity * entity)
 {
 	m_focusedEntity = entity;
+    m_prevPosition = entity->position;
 }
 
 void BoxCollider::Update()
 {
 	position = m_focusedEntity->position;
 	m_centerPoint = glm::vec2(position.x + size.x / 2, position.y + size.y / 2);
+}
+
+void BoxCollider::CollisionBacktrack() {
+    m_focusedEntity->position = m_prevPosition;
+    this->Update();
 }
 
 bool BoxCollider::CheckCollision(BoxCollider * boxOne, BoxCollider * boxTwo)

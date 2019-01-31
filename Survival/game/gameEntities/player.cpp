@@ -9,7 +9,7 @@ Player::Player(glm::vec3 worldPosition, glm::vec2 size, const Texture & texture,
 	GetAnimator()->LoadRow(0);
 }
 
-void Player::Update(InputManager* inputManager)
+void Player::Update(InputManager* inputManager, PhysicsManager* physicsManager)
 {
 	Sprite2D::Update(inputManager);
 
