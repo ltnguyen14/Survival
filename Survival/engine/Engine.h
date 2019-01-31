@@ -6,9 +6,6 @@
 #include "platform/texture/texture.h"
 #include "platform/window/Window.h"
 
-#include "components/event/EventNode.h"
-#include "components/event/Event.h"
-
 #include "gameComponents/gameComponents.h"
 
 #include "components/components.h"
