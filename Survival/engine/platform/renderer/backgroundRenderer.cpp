@@ -8,6 +8,22 @@ void BackgroundRenderer::AddSprite(Sprite2D * sprite)
 	m_modelMatricies.push_back(modelMatrix);
 }
 
+void BackgroundRenderer::RemoveSprite(Sprite2D* sprite)
+{
+    int index = -1;
+    for (int i = 0; i < m_sprites.size(); i++) {
+        if (sprite->uid == m_sprites[i]->uid) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index >= 0) {
+        m_sprites.erase(m_sprites.begin() + index);
+        m_modelMatricies.erase(m_modelMatricies.begin() + index);
+    }
+}
+
 void BackgroundRenderer::Render(const Camera & camera)
 {
 	m_shader.BindShader();

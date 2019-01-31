@@ -13,6 +13,7 @@ public:
 	SpriteRenderer(const std::string & shaderPath);
 
 	virtual void AddSprite(Sprite2D* sprite);
+    virtual void RemoveSprite(Sprite2D* sprite);
 	virtual void Render(const Camera& camera);
 
 protected:

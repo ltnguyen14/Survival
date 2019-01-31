@@ -10,6 +10,23 @@ void SpriteRenderer::AddSprite(Sprite2D* sprite)
 	m_sprites.push_back(sprite);
 }
 
+void SpriteRenderer::RemoveSprite(Sprite2D* sprite)
+{
+    int index = -1;
+    for (int i = 0; i < m_sprites.size(); i++) {
+        if (sprite->uid == m_sprites[i]->uid) {
+            index = i;
+            break;
+        }
+    }
+
+    if (index >= 0) {
+        m_sprites.erase(m_sprites.begin() + index);
+    }
+}
+
+
+
 void SpriteRenderer::Render(const Camera & camera)
 {
 	std::sort(m_sprites.begin(), m_sprites.end(), [](Sprite2D* lhs, Sprite2D* rhs) -> bool { return lhs->position.y < rhs->position.y; });
