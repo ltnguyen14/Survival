@@ -8,7 +8,11 @@ void TestState::Init(GameEngine * gameEngine)
 
 	Player* player = new Player{ { 0, 0, 0 }, { 64, 128 }, *playerTexture, { 0, 0 } };
     std::cout << "Created a new player with uid: " << player->uid << std::endl;
-	gameEngine->m_physicsManager.AddBoxCollider(*player, player->position, { 64, 128 });
+	gameEngine->m_physicsManager.AddBoxCollider(
+		*player, 
+		player->position + glm::vec3(player->size.x / 4, player->size.y / 2, 0),
+		{ 64 / 2, 128 / 2 }
+	);
 	/*
 	Sprite2D* sprite = new Sprite2D{ {128, 0, 0}, { 64, 64 }, *objectTexture, { 0, 0 } };
     std::cout << "Created a new sprite with uid: " << sprite->uid << std::endl;
@@ -22,7 +26,7 @@ void TestState::Init(GameEngine * gameEngine)
 			Sprite2D* sprite = new Sprite2D{ { x * 64, y * 64, 0 }, { 48 * 4, 64 * 4 }, *objectTexture, { 1, 0 } };
 			gameEngine->m_physicsManager.AddBoxCollider(
 				*sprite, 
-				sprite->position + glm::vec3(sprite->size.x/2, sprite->size.y/2, 0), 
+				sprite->position + glm::vec3(sprite->size.x/4, sprite->size.y/2, 0), 
 				glm::vec2(sprite->size.x / 2, sprite->size.y / 2)
 			);
 			m_backgroundSprites.push_back(sprite);
