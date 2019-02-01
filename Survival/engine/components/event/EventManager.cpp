@@ -16,8 +16,10 @@ EventBus* EventManager::CreateNewEventBus()
 	return newEventBus;
 }
 
-Evetn* EventManager::CreateNewEvent(std::string eventMessage) {
-	Event* event = new Event(eventMessage);
+Event* EventManager::CreateNewEvent(std::string eventMessage) {
+	Event* event = new Event();
+	event->EVENT_NAME = eventMessage;
+
 	m_events.push_back(event);
 	return event;
 }

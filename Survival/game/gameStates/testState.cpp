@@ -3,16 +3,16 @@
 void TestState::Init(GameEngine * gameEngine)
 {
 	srand(time(nullptr));
-	Texture* playerTexture = new Texture{ "res/spritesheets/Player.png", { 16, 32 } };
-	Texture* objectTexture = new Texture{ "res/spritesheets/spritesheet_natural_items.png", { 16, 16 } };
+	Texture* playerTexture = new Texture{ "res/spritesheets/test.png", { 63, 128 } };
+	Texture* objectTexture = new Texture{ "res/spritesheets/spritesheet_natural.png", { 16, 16 } };
 
 	Player* player = new Player{ { 0, 0, 0 }, { 64, 128 }, *playerTexture, { 0, 0 } };
     std::cout << "Created a new player with uid: " << player->uid << std::endl;
-	gameEngine->m_physicsEngine.AddBoxCollider(*player, { 64, 128 });
+	gameEngine->m_physicsManager.AddBoxCollider(*player, { 64, 128 });
 
-	Sprite2D* sprite = new Sprite2D{ {128, 128, 0}, { 64, 64 }, *objectTexture, { 0, 0 } };
+	Sprite2D* sprite = new Sprite2D{ {128, 0, 0}, { 64, 64 }, *objectTexture, { 0, 0 } };
     std::cout << "Created a new sprite with uid: " << sprite->uid << std::endl;
-	gameEngine->m_physicsEngine.AddBoxCollider(*sprite, { 64, 64 });
+	gameEngine->m_physicsManager.AddBoxCollider(*sprite, { 64, 64 });
 
 	m_backgroundSprites.push_back(sprite);
 
@@ -26,8 +26,6 @@ void TestState::Init(GameEngine * gameEngine)
 		}*/
 	
 	m_sprites.push_back(player);
-
-	gameEngine->m_physicsEngine.AddBoxCollider(*player, {1, 1});
 
 	for (unsigned int i = 0; i < m_backgroundSprites.size(); i++) {
 		gameEngine->m_backgroundRenderer.AddSprite(m_backgroundSprites[i]);
@@ -58,15 +56,15 @@ void TestState::HandleEvents(GameEngine * gameEngine)
 void TestState::Update(GameEngine * gameEngine)
 {
 	for (unsigned int i = 0; i < m_sprites.size(); i++) {
-		m_sprites[i]->Update(&gameEngine->m_inputManager);
+		m_sprites[i]->Update(&gameEngine->m_inputManager, &gameEngine->m_physicsManager);
 	}
 	gameEngine->m_camera.Update();
-	gameEngine->m_physicsEngine.Update();
+	gameEngine->m_physicsManager.Update();
 }
 
 void TestState::FixedUpdate(GameEngine * gameEngine)
 {
-	gameEngine->m_physicsEngine.FixedUpdate();
+	gameEngine->m_physicsManager.FixedUpdate();
 	{
 		ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);

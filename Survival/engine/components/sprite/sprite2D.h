@@ -3,6 +3,7 @@
 #include "../../platform/texture/texture.h"
 #include "../animator/animator.h"
 #include "../gameComponents/inputManager.h"
+#include "../components/physics/PhysicsManager.h"
 #include "glm.hpp"
 
 class Sprite2D : public Entity{
@@ -11,7 +12,7 @@ public:
 	virtual ~Sprite2D();
 
 	void Bind() const;
-	virtual void Update(InputManager* inputManager);
+	virtual void Update(InputManager* inputManager, PhysicsManager* physicsManager);
 
 	glm::vec2 GetCenterPoint() { return { position.x + size.x, position.y + size.y }; };
 

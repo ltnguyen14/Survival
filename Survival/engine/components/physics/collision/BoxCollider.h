@@ -5,19 +5,21 @@
 
 class BoxCollider : public Entity {
 public:
-	BoxCollider(glm::vec2 size) : m_size(size), m_centerPoint(0, 0) {};
+	BoxCollider(glm::vec2 size, Entity* entity);
 	virtual ~BoxCollider() {};
 
 	inline const Entity* GetEntity() { return m_focusedEntity; };
-	void HookEntity(const Entity* entity);
+	void HookEntity(Entity* entity);
+
+	inline void SetPrevPosition() { this->m_prevPosition = this->position; };
+
     void CollisionBacktrack();
 	void Update();
 
 	static bool CheckCollision(BoxCollider* boxOne, BoxCollider* boxTwo);
 
 private:
-	const Entity* m_focusedEntity;
+	Entity* m_focusedEntity;
     glm::vec3 m_prevPosition;
 	glm::vec2 m_centerPoint;
-	glm::vec2 m_size;
 };

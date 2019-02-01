@@ -11,8 +11,7 @@ Player::Player(glm::vec3 worldPosition, glm::vec2 size, const Texture & texture,
 
 void Player::Update(InputManager* inputManager, PhysicsManager* physicsManager)
 {
-	Sprite2D::Update(inputManager);
-
+	Sprite2D::Update(inputManager, physicsManager);
 	//-------------------MOVEMENT-------------------------------
 	// Handle key pressed
 	glm::vec3 displacement = { 0, 0, 0 };

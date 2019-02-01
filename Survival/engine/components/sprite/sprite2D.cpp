@@ -45,7 +45,7 @@ void Sprite2D::Bind() const
 	m_ibo->Bind();
 }
 
-void Sprite2D::Update(InputManager* inputManager)
+void Sprite2D::Update(InputManager* inputManager, PhysicsManager* physicsManager)
 {
 	std::vector<float> textureCoords;
 	if (m_animator != nullptr) {

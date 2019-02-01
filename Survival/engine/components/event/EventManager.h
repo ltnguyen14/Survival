@@ -8,7 +8,7 @@ public:
 	~EventManager();
 
 	EventBus* CreateNewEventBus();
-	Event* CreateNewEvent();
+	Event* CreateNewEvent(std::string eventMessage);
 
 private:
 	std::vector<EventBus*> m_eventBuses;
