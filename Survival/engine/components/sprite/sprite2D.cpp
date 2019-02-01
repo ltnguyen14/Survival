@@ -1,4 +1,5 @@
 #include "sprite2D.h"
+#include "../components/physics/PhysicsManager.h"
 
 Sprite2D::Sprite2D(glm::vec3 worldPosition, glm::vec2 size, const Texture& texture, glm::vec2 coord)
 	: m_texture(texture), m_coord(coord)

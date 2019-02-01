@@ -5,7 +5,7 @@
 
 class BoxCollider : public Entity {
 public:
-	BoxCollider(glm::vec2 size, Entity* entity);
+	BoxCollider(glm::vec2 position, glm::vec2 size, Entity* entity);
 	virtual ~BoxCollider() {};
 
 	inline const Entity* GetEntity() { return m_focusedEntity; };
@@ -22,4 +22,5 @@ private:
 	Entity* m_focusedEntity;
     glm::vec3 m_prevPosition;
 	glm::vec2 m_centerPoint;
+	glm::vec2 m_offsetFromEntityPosition;
 };

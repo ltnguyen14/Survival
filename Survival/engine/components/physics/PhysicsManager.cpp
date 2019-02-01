@@ -3,17 +3,21 @@
 PhysicsManager::PhysicsManager(Window * window)
 	: m_window(window)
 {
+	m_boxTexture = new Texture{ "res/spritesheets/Box2D.png", { 16, 16 } };
 }
 
 PhysicsManager::~PhysicsManager()
 {
 }
 
-void PhysicsManager::AddBoxCollider(Entity & entity, glm::vec2 size)
+void PhysicsManager::AddBoxCollider(Entity & entity, glm::vec2 position, glm::vec2 size)
 {
-	BoxCollider* newBoxCollider = new BoxCollider(size, &entity);
+	BoxCollider* newBoxCollider = new BoxCollider(position, size, &entity);
 	m_colliders.push_back(newBoxCollider);
 	newBoxCollider->HookEntity(&entity);
+
+	Sprite2D* boxColliderSprite = new Sprite2D{ glm::vec3(position.x, position.y, 0), size, *m_boxTexture, { 0, 0 } };
+	m_boxColliderSprites.push_back(boxColliderSprite);
 }
 
 void PhysicsManager::Update()

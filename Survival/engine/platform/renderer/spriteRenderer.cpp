@@ -20,16 +20,14 @@ void SpriteRenderer::RemoveSprite(Sprite2D* sprite)
         }
     }
 
-    if (index >= 0) {
+	if (index >= 0) {
         m_sprites.erase(m_sprites.begin() + index);
     }
 }
 
-
-
 void SpriteRenderer::Render(const Camera & camera)
 {
-	std::sort(m_sprites.begin(), m_sprites.end(), [](Sprite2D* lhs, Sprite2D* rhs) -> bool { return lhs->position.y < rhs->position.y; });
+	std::sort(m_sprites.begin(), m_sprites.end(), [](Sprite2D* lhs, Sprite2D* rhs) -> bool { return lhs->position.y + lhs->size.y < rhs->position.y + rhs->size.y; });
 
 	m_shader.BindShader();
 

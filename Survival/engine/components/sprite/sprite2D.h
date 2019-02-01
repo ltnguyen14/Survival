@@ -3,8 +3,9 @@
 #include "../../platform/texture/texture.h"
 #include "../animator/animator.h"
 #include "../gameComponents/inputManager.h"
-#include "../components/physics/PhysicsManager.h"
 #include "glm.hpp"
+
+class PhysicsManager;
 
 class Sprite2D : public Entity{
 public:
