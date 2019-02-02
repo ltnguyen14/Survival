@@ -12,12 +12,9 @@ PhysicsManager::~PhysicsManager()
 
 void PhysicsManager::AddBoxCollider(Entity & entity, glm::vec2 position, glm::vec2 size)
 {
-	BoxCollider* newBoxCollider = new BoxCollider(position, size, &entity);
+	BoxCollider* newBoxCollider = new BoxCollider(position, size, &entity, m_boxTexture, { 0, 0 });
 	m_colliders.push_back(newBoxCollider);
 	newBoxCollider->HookEntity(&entity);
-
-	Sprite2D* boxColliderSprite = new Sprite2D{ glm::vec3(position.x, position.y, 0), size, *m_boxTexture, { 0, 0 } };
-	m_boxColliderSprites.push_back(boxColliderSprite);
 }
 
 void PhysicsManager::Update()
@@ -33,7 +30,6 @@ void PhysicsManager::FixedUpdate()
         for (int y = x + 1; y < m_colliders.size(); y++) {
 			bool collision = false;
             if (BoxCollider::CheckCollision(m_colliders[x], m_colliders[y])) {
-                std::cout << "Collision detected!" << std::endl;
                 m_colliders[x]->CollisionBacktrack();
 				collision = true;
             }

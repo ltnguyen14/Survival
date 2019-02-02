@@ -13,7 +13,7 @@ class GameState;
 
 class GameEngine {
 public:
-	GameEngine(int width, int height, const char* title, bool resizable, int FPS);
+	GameEngine(int width, int height, const char* title, bool resizable, bool fullscreen, int FPS);
 
 	void Init();
 	void Cleanup();
@@ -37,6 +37,7 @@ public:
 	EventManager m_eventManager;
 	PhysicsManager m_physicsManager;
 	SpriteRenderer m_spriteRenderer;
+	SpriteRenderer m_collisionBoxRenderer;
 	BackgroundRenderer m_backgroundRenderer;
 
 private:

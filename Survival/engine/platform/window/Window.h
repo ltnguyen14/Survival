@@ -17,7 +17,7 @@ private:
 	friend static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods);
 
 public:
-	Window(int width, int height, const char* title, bool resizable);
+	Window(int width, int height, const char* title, bool resizable, bool fullscreen);
 	virtual ~Window();
 
 	void Clear() const;

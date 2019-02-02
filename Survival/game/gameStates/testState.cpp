@@ -13,13 +13,6 @@ void TestState::Init(GameEngine * gameEngine)
 		player->position + glm::vec3(player->size.x / 4, player->size.y / 2, 0),
 		{ 64 / 2, 128 / 2 }
 	);
-	/*
-	Sprite2D* sprite = new Sprite2D{ {128, 0, 0}, { 64, 64 }, *objectTexture, { 0, 0 } };
-    std::cout << "Created a new sprite with uid: " << sprite->uid << std::endl;
-	gameEngine->m_physicsManager.AddBoxCollider(*sprite, { 64, 64 });
-
-	m_backgroundSprites.push_back(sprite);
-	*/
 
 	for (int x = 0; x < 1; x++)
 		for (int y = 0; y < 1; y++) {
@@ -34,16 +27,20 @@ void TestState::Init(GameEngine * gameEngine)
 	
 	m_sprites.push_back(player);
 
+	// Add background sprites
 	for (unsigned int i = 0; i < m_backgroundSprites.size(); i++) {
 		gameEngine->m_spriteRenderer.AddSprite(m_backgroundSprites[i]);
 	}
 
+	// Add to normal sprite renderer
 	for (unsigned int i = 0; i < m_sprites.size(); i++) {
 		gameEngine->m_spriteRenderer.AddSprite(m_sprites[i]);
 	}
 
-	for (int i = 0; i < gameEngine->m_physicsManager.GetBoxColliderSprites().size(); i++) {
-		gameEngine->m_spriteRenderer.AddSprite(gameEngine->m_physicsManager.GetBoxColliderSprites()[i]);
+	//Add collision bounding boxes
+	std::vector<BoxCollider*> boxColliders = gameEngine->m_physicsManager.GetBoxColliders();
+	for (int i = 0; i < boxColliders.size(); i++) {
+		gameEngine->m_collisionBoxRenderer.AddSprite(boxColliders[i]->GetBoundingBoxSprite());
 	}
 
 	gameEngine->m_camera.HookEntity(*player);
@@ -77,12 +74,20 @@ void TestState::Update(GameEngine * gameEngine)
 void TestState::FixedUpdate(GameEngine * gameEngine)
 {
 	gameEngine->m_physicsManager.FixedUpdate();
+
 	{
-		ImGui::SetNextWindowSize({ (float)gameEngine->m_window.GetWidth() * 2 / 3, (float)gameEngine->m_window.GetHeight() / 3 });
+		ImGui::SetNextWindowSize({ (float)gameEngine->m_window.GetWidth(), (float)gameEngine->m_window.GetHeight() / 3 });
 		ImGui::SetNextWindowPos({ 0, 0 });
 		
 		ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+		ImGui::Checkbox("Draw collision boxes", &m_drawCollisionBoxes);
+
+		if (ImGui::Button("Quit"))
+		{
+			gameEngine->Quit();
+		}
+
 		ImGui::End();
 	}
 }
@@ -91,4 +96,8 @@ void TestState::Draw(GameEngine * gameEngine)
 {
 	gameEngine->m_backgroundRenderer.Render(gameEngine->m_camera);
 	gameEngine->m_spriteRenderer.Render(gameEngine->m_camera);
+
+	if (m_drawCollisionBoxes) {
+		gameEngine->m_collisionBoxRenderer.Render(gameEngine->m_camera);
+	}
 }

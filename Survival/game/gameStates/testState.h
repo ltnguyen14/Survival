@@ -24,4 +24,5 @@ public:
 private:
 	std::vector<Sprite2D*> m_sprites;
 	std::vector<Sprite2D*> m_backgroundSprites;
+	bool m_drawCollisionBoxes;
 };

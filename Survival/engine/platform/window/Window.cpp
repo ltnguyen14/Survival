@@ -15,7 +15,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 	win->m_buttons[button] = action != GLFW_RELEASE;
 }
 
-Window::Window(int width, int height, const char * title, bool resizable)
+Window::Window(int width, int height, const char * title, bool resizable, bool fullscreen)
 	:m_width(width), m_height(height), m_title(title), m_resizable(resizable)
 {
 
@@ -31,7 +31,10 @@ Window::Window(int width, int height, const char * title, bool resizable)
 	glfwWindowHint(GLFW_RESIZABLE, m_resizable);
 
 	/* Create a windowed mode window and its OpenGL context */
-	m_window = glfwCreateWindow(m_width, m_height, m_title, NULL, NULL);
+	if (fullscreen)
+		m_window = glfwCreateWindow(m_width, m_height, m_title, glfwGetPrimaryMonitor(), NULL);
+	else 
+		m_window = glfwCreateWindow(m_width, m_height, m_title, NULL, NULL);
 
 	if (!m_window)
 	{
