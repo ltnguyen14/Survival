@@ -40,7 +40,7 @@ void BackgroundRenderer::Render(const Camera & camera)
 
 	for (unsigned int i = 0; i < m_sprites.size(); i++) {
 		m_sprites[i]->Bind();
-		m_sprites[i]->GetTexture().Bind();
+		m_sprites[0]->GetTexture().Bind();
 
 		m_shader.SetUniformMat4("u_M", m_modelMatricies[i]);
 		GLCALL(glDrawElements(GL_TRIANGLES, m_sprites[i]->GetIndiciesCount(), GL_UNSIGNED_INT, nullptr));

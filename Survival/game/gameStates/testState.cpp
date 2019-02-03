@@ -4,7 +4,7 @@ void TestState::Init(GameEngine * gameEngine)
 {
 	srand(time(nullptr));
 	Texture* playerTexture = new Texture{ "res/spritesheets/test.png", { 63, 128 } };
-	Texture* objectTexture = new Texture{ "res/spritesheets/spritesheet_natural.png", { 48, 64 } };
+	Texture* objectTexture = new Texture{ "res/spritesheets/spritesheet_natural.png", { 16, 16 } };
 
 	Player* player = new Player{ { 0, 0, 0 }, { 64, 128 }, *playerTexture, { 0, 0 } };
     std::cout << "Created a new player with uid: " << player->uid << std::endl;
@@ -14,14 +14,9 @@ void TestState::Init(GameEngine * gameEngine)
 		{ 64 / 2, 128 / 2 }
 	);
 
-	for (int x = 0; x < 1; x++)
-		for (int y = 0; y < 1; y++) {
-			Sprite2D* sprite = new Sprite2D{ { x * 64, y * 64, 0 }, { 48 * 4, 64 * 4 }, *objectTexture, { 1, 0 } };
-			gameEngine->m_physicsManager.AddBoxCollider(
-				*sprite, 
-				sprite->position + glm::vec3(sprite->size.x/4, sprite->size.y/2, 0), 
-				glm::vec2(sprite->size.x / 2, sprite->size.y / 2)
-			);
+	for (int x = 0; x < 100; x++)
+		for (int y = 0; y < 100; y++) {
+			Sprite2D* sprite = new Sprite2D{ { x * 64, y * 64, 0 }, { 64, 64 }, *objectTexture, { 1, 0 } };
 			m_backgroundSprites.push_back(sprite);
 		}
 	
@@ -29,7 +24,7 @@ void TestState::Init(GameEngine * gameEngine)
 
 	// Add background sprites
 	for (unsigned int i = 0; i < m_backgroundSprites.size(); i++) {
-		gameEngine->m_spriteRenderer.AddSprite(m_backgroundSprites[i]);
+		gameEngine->m_backgroundRenderer.AddSprite(m_backgroundSprites[i]);
 	}
 
 	// Add to normal sprite renderer
@@ -79,7 +74,7 @@ void TestState::FixedUpdate(GameEngine * gameEngine)
 		ImGui::SetNextWindowSize({ (float)gameEngine->m_window.GetWidth(), (float)gameEngine->m_window.GetHeight() / 3 });
 		ImGui::SetNextWindowPos({ 0, 0 });
 		
-		ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+		ImGui::Begin("Debugger");                          // Create a window called "Hello, world!" and append into it.
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		ImGui::Checkbox("Draw collision boxes", &m_drawCollisionBoxes);
 
