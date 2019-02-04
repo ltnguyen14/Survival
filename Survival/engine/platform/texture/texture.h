@@ -15,6 +15,8 @@ public:
 	void Bind(unsigned int slot = 0) const;
 	void Unbind();
 
+	void ReloadTexture();
+
 	const std::vector<float> GetTextureCoords(int xPos, int yPos) const;
 
 	inline const int GetWidth() const { return m_width; };

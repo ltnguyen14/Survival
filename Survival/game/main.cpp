@@ -6,7 +6,7 @@
 
 int main(void)
 {
-	GameEngine game = { 1920, 1080, "Survival", false, true, 60 };
+	GameEngine game = { 1280, 720, "Survival", false, false, 60 };
 	TestState testState = {};
 	
 	game.Init();

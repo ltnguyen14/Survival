@@ -41,6 +41,30 @@ void Texture::Unbind()
 	GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
 }
 
+void Texture::ReloadTexture()
+{
+	stbi_set_flip_vertically_on_load(1);
+	m_LocalBuffer = stbi_load(m_FilePath.c_str(), &m_width, &m_height, &m_BPP, 4);
+
+	GLCALL(glGenTextures(1, &m_id));
+	GLCALL(glBindTexture(GL_TEXTURE_2D, m_id));
+
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+	GLCALL(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+	GLCALL(glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
+
+
+	GLCALL(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_width, m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer));
+	GLCALL(glBindTexture(GL_TEXTURE_2D, 0));
+
+	if (m_LocalBuffer)
+		stbi_image_free(m_LocalBuffer);
+
+	m_blockNum = { (float)m_width / (float)m_blockSize.x, (float)m_height / (float)m_blockSize.y };
+}
+
 const std::vector<float> Texture::GetTextureCoords(int xPos, int yPos) const
 {
 	const float TEX_PER_ROW_VERTICLE = (float)m_height / (float)m_blockSize.y;

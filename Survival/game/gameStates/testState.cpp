@@ -3,8 +3,11 @@
 void TestState::Init(GameEngine * gameEngine)
 {
 	srand(time(nullptr));
-	Texture* playerTexture = new Texture{ "res/spritesheets/test.png", { 63, 128 } };
+	Texture* playerTexture = new Texture{ "res/spritesheets/Player.png", { 16, 32 } };
 	Texture* objectTexture = new Texture{ "res/spritesheets/spritesheet_natural.png", { 16, 16 } };
+
+	m_textures.push_back(playerTexture);
+	m_textures.push_back(objectTexture);
 
 	Player* player = new Player{ { 0, 0, 0 }, { 64, 128 }, *playerTexture, { 0, 0 } };
     std::cout << "Created a new player with uid: " << player->uid << std::endl;
@@ -14,8 +17,8 @@ void TestState::Init(GameEngine * gameEngine)
 		{ 64 / 2, 128 / 2 }
 	);
 
-	for (int x = 0; x < 100; x++)
-		for (int y = 0; y < 100; y++) {
+	for (int x = 0; x < 10; x++)
+		for (int y = 0; y < 10; y++) {
 			Sprite2D* sprite = new Sprite2D{ { x * 64, y * 64, 0 }, { 64, 64 }, *objectTexture, { 1, 0 } };
 			m_backgroundSprites.push_back(sprite);
 		}
@@ -78,8 +81,13 @@ void TestState::FixedUpdate(GameEngine * gameEngine)
 		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
 		ImGui::Checkbox("Draw collision boxes", &m_drawCollisionBoxes);
 
-		if (ImGui::Button("Quit"))
-		{
+		if (ImGui::Button("Reload Textures")) {
+			for (auto texture : m_textures) {
+				texture->ReloadTexture();
+			}
+		}
+
+		if (ImGui::Button("Quit")) {
 			gameEngine->Quit();
 		}
 
